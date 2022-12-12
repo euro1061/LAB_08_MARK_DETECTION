@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.imageclassifierd">
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -12,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Imageclassifierd"
         tools:targetApi="31">
-        >
+        <activity
+            android:name=".Page2"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

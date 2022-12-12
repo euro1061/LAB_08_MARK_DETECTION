@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView result, confidence;
     ImageView imageView;
-    Button picture;
+    Button picture, nextPage;
     int imageSize = 224;
 
     @Override
@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         confidence = findViewById(R.id.confidence);
         imageView = findViewById(R.id.imageView);
         picture = findViewById(R.id.button);
+        nextPage = findViewById(R.id.button2);
+
+        nextPage.setVisibility(View.INVISIBLE);
 
         picture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        nextPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Page2 = new Intent(getApplicationContext(), Page2.class);
+                startActivity(Page2);
+            }
+        });
     }
+
 
     public void classifyImage(Bitmap image) {
         try {
@@ -104,8 +116,14 @@ public class MainActivity extends AppCompatActivity {
             String[] classes = {"ใส่แมส", "ไม่ใส่แมส"};
             if(maxPos == 1) {
                 result.setTextColor(Color.parseColor("#e32019"));
+                picture.setVisibility(View.VISIBLE);
+                nextPage.setVisibility(View.INVISIBLE);
+                picture.setText("ถ่ายรูปใหม่");
             }else {
                 result.setTextColor(Color.parseColor("#27e016"));
+                picture.setVisibility(View.INVISIBLE);
+                nextPage.setVisibility(View.VISIBLE);
+                picture.setText("ถ่ายรูป");
             }
 
             result.setText(classes[maxPos]);
